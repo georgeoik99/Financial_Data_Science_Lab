@@ -1,51 +1,77 @@
-# Quantitative Finance with Python
+# Financial Data Science Lab
 
-This repository is a collection of small, reproducible projects in quantitative
-finance. It focuses on portfolio construction, transparent backtesting, risk and
-performance measurement, and the careful use of machine learning for trading
-signals.
+**Quantitative Finance · Financial Mathematics · Python · Portfolio Analytics · Risk Management · Machine Learning**
 
-The goal is not to present complex models as automatically superior. Each project
-starts with a financial question, defines an investable benchmark, accounts for
-timing and transaction costs, and interprets the results in economic terms.
+A collection of focused, notebook-based case studies exploring how mathematical models and Python can be applied to financial markets. The repository combines financial theory, empirical market data, simulation, portfolio construction, and risk measurement.
+
+The emphasis is on understanding **model assumptions, implementation choices, and economic interpretation**—not on claiming that more complex models necessarily deliver better investment outcomes.
 
 ## Projects
 
-| Project | Topics |
-| --- | --- |
-| [Portfolio Allocation Rules](projects/portfolio-allocation-rules/) | Equal-weight and inverse-volatility portfolios compared with the S&P 500 |
-| [Investment Strategies and ML Classification](projects/investment-strategies-and-ml/) | Greek equity strategies and MLP/LSTM classification for Repsol using European oil-sector data |
+### Financial Mathematics & Risk Analytics
 
-## Repository structure
+| Project | Focus | Market / Instruments |
+| --- | --- | --- |
+| [Binomial Stock Dynamics & One-Period Option Pricing](binomial-stock-dynamics/) | Discounting, binomial price dynamics, physical vs. risk-neutral probabilities, martingales, European option payoffs, replicating portfolios, and no-arbitrage pricing. | TotalEnergies ADR (`TTE`) |
+| [Continuous-Time Financial Models](continuous-time-financial-models/) | Brownian motion, Itô's lemma, Geometric Brownian Motion, Ornstein–Uhlenbeck mean reversion, calibration, and risk-neutral dynamics. | NVIDIA (`NVDA`); WTI crude oil futures (`CL=F`) |
+| [Fixed Income & Yield Curve Analytics](fixed-income-yield-curve-analytics/) | Bond pricing and yield to maturity, duration, convexity, Treasury yield curves, Nelson–Siegel fitting, and illustrative short-rate models. | U.S. Treasury yields / FRED |
+| [Greek Equity Portfolio Optimization & Risk Analytics](greek-equity-portfolio-risk-analytics/) | Diversification, mean–variance optimization, efficient frontier, tangency portfolio, CAPM, performance measures, and historical VaR / CVaR. | Greek equities and ATHEX Composite |
+| [Multi-Asset ETF Risk Management & Stress Testing](multi-asset-etf-risk-management/) | Historical, Gaussian, Student-t, and Monte Carlo VaR; Expected Shortfall; multi-day risk; stress scenarios; and the limitations of VaR. | `SPY`, `SOXX`, `XLE`, `TLT`, `GLD` |
+
+### Portfolio Strategies & Applied Machine Learning
+
+| Project | Focus | Market / Instruments |
+| --- | --- | --- |
+| [Portfolio Allocation Rules](portfolio-allocation-rules/) | Equal-weight and inverse-volatility allocation rules, with an S&P 500 comparison. | Equity portfolio / S&P 500 |
+| [Investment Strategies & ML Classification](investment-strategies-and-ml/) | Greek equity investment strategies and MLP / LSTM classification using European oil-sector market data. | Greek equities; Repsol / European oil sector |
+
+Each folder has its own README describing its methodology and usage. The projects are separate case studies; they are **not** presented as one unified trading system.
+
+## Repository Structure
 
 ```text
-Quant_Finance_Python/
-├── README.md
-└── projects/
-    ├── portfolio-allocation-rules/
-    │   ├── README.md
-    │   └── portfolio_optimization.ipynb
-    └── investment-strategies-and-ml/
-        ├── README.md
-        ├── investment_strategies_and_ml.ipynb
-        └── requirements.txt
+Financial_Data_Science_Lab/
+├── binomial-stock-dynamics/
+├── continuous-time-financial-models/
+├── fixed-income-yield-curve-analytics/
+├── greek-equity-portfolio-risk-analytics/
+├── investment-strategies-and-ml/
+├── multi-asset-etf-risk-management/
+├── portfolio-allocation-rules/
+├── .gitignore
+└── README.md
 ```
 
-Each project folder contains its own short README with the research question,
-methodology, data, and instructions for running the notebook.
+## Approach
 
-## Main tools
+The financial-mathematics notebooks generally follow this sequence:
 
-- Python and Jupyter
-- pandas, NumPy, Matplotlib
-- yfinance
-- scikit-learn
-- TensorFlow/Keras
+**Financial question → Mathematical formulation → Python implementation → Numerical or empirical results → Interpretation and limitations**
 
-## Notes
+Depending on the project, the work includes market-data calibration, simulated scenarios, optimization, statistical estimation, or comparisons with reference strategies. Where hypothetical rates or stress shocks are used, they are intended for illustration rather than as live market forecasts.
 
-- Market data are downloaded at notebook runtime, so results may change as new
-  observations become available or data providers revise historical series.
-- The notebooks are educational research projects, not investment advice.
-- Historical and out-of-sample performance does not guarantee future results.
+## Tools
 
+- **Core:** Python, Jupyter, NumPy, pandas, Matplotlib, SciPy
+- **Market data:** yfinance; FRED data where relevant
+- **Machine learning:** scikit-learn and TensorFlow/Keras in the applicable project
+
+Dependencies differ by project; use its local `requirements.txt` when provided.
+
+## Getting Started
+
+1. Open the folder of the project you want to explore.
+2. Read that project's `README.md` for its data sources and setup instructions.
+3. Install its dependencies (where a requirements file is supplied):
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+4. Open the notebook in Jupyter or VS Code and run its cells in order.
+
+Some notebooks download financial data at runtime and require internet access. Download availability, ticker symbols, historical data revisions, and provider APIs can affect reproducibility.
+
+## Scope & Disclaimer
+
+This repository is an **educational and portfolio research collection**, not a live trading or investment-advice service. Model-based prices, simulated paths, backtests, VaR, and stress scenarios depend on assumptions and historical information. Past performance and estimated risk measures do not guarantee future outcomes.
