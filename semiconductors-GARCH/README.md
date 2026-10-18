@@ -36,11 +36,13 @@ The GARCH forecasts use expanding historical information with parameter refits e
 
 ![Forecast improvement versus historical 21-day variance](outputs/figures/model_skill_comparison.png)
 
-### Volatility forecasts for all four equities
+### Volatility dynamics across NVDA, AMD, AVGO and INTC
 
-![21-day smoothed model forecasts and ex-post volatility proxy](outputs/figures/four_asset_volatility_comparison.png)
+![CNN vs GARCH: 21-day smoothed volatility forecasts for four semiconductor equities](outputs/figures/four_asset_volatility_comparison.png)
 
-The black lines in the second figure are **ex-post rolling volatility proxies**, not observable conditional variances. Squared returns are noisy risk proxies, so visually smoother curves or lower errors do not automatically establish economic or statistical superiority.
+The four panels compare 21-day smoothed **CNN-1D**, **GARCH-Gaussian**, and **EGARCH-Student-t** variance forecasts with an *ex-post* volatility proxy (black). The CNN tends to respond less strongly to some volatility spikes, particularly for NVDA and INTC. For AVGO, its forecast errors are lowest over the full test period, although that advantage is concentrated in 2025. This visual comparison describes model behavior; the quantitative rankings come from the one-step-ahead MSE and QLIKE results above.
+
+The black curve is **not an observed conditional variance**. It is derived from rolling squared returns and is shown for interpretation, not as a training input or an additional forecasting model.
 
 ## Reproduce the analysis
 
